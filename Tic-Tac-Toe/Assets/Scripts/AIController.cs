@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +5,15 @@ using UnityEngine.UI;
 public class AIController : MonoBehaviour
 {
 
-    
+
     private GameState gameState;
-    List<int> availableTiles = new List<int>();
     private CustomArray[] array;
+    List<int> availableTiles = new List<int>();
     private string aIPiece;
+
+
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class AIController : MonoBehaviour
         gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
 
         //Let AI sign be the oposite of player's
-        if(gameState.playerPreference == "X")
+        if (gameState.playerPreference == "X")
         {
             aIPiece = "X";
         }
@@ -26,34 +29,34 @@ public class AIController : MonoBehaviour
         {
             aIPiece = "O";
         }
-        
+
     }
 
     private void Start()
     {
-        
+
     }
     public void CreatePossibleMoves()
     {
-        
+
         string debugMoves = null;
         //Clear out the list first on every turn
-        availableTiles.Clear(); 
+        availableTiles.Clear();
         //Debug.ClearDeveloperConsole(); 
 
-        for(int i = 0;i<array.Length;i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            if(array[i].gameObject.GetComponent<Text>().text == "")
+            if (array[i].gameObject.GetComponent<Text>().text == "")
             {
                 //Debuggin purposes, to check what's available for AI to choose from
-                debugMoves = debugMoves + ","+i.ToString();
+                debugMoves = debugMoves + "," + i.ToString();
                 //Add all available open tiles to be chosen on list
                 availableTiles.Add(i);
             }
         }
         Debug.Log("Adding: " + debugMoves);
-        Debug.Log("Available Tiles: "+availableTiles.Count.ToString());
-    }    
+        Debug.Log("Available Tiles: " + availableTiles.Count.ToString());
+    }
     public void AIMove()
     {
         //Checks where AI can place its piece
@@ -89,7 +92,7 @@ public class AIController : MonoBehaviour
             takenScore += gameState.myArray[2].value;
         }
         index = takenScore - 15;
-        
+
         return index;
 
     }

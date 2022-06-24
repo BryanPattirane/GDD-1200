@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
         instructions = GameObject.FindGameObjectWithTag("Instructions");
         instructions.gameObject.SetActive(false);
-        
+
     }
     public void StartGame()
     {
@@ -32,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             instructions.gameObject.SetActive(false);
         }

@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] AIController aiScript;
+
+    public GameObject stateObject;
+    private GameState gameState;
+
+    private bool aIFirstMove;
     public Text gameText;
     private string textValue;
     private string playerType;
-    public GameObject stateObject;
-    GameState gameState;
-    [SerializeField] AIController aiScript;
-    private bool aIFirstMove;
-
     public string playerMoves;
     // Start is called before the first frame update
 
@@ -26,10 +25,7 @@ public class GameController : MonoBehaviour
         gameText = GetComponent<Text>();
         gameText.text = textValue;
         aiScript = GameObject.FindGameObjectWithTag("AI").GetComponent<AIController>();
-        
-    }
-    void Start()
-    {
+
     }
 
     public void ChangeText()
@@ -39,7 +35,7 @@ public class GameController : MonoBehaviour
         {
             gameText.GetComponent<Text>().text = gameState.playerPreference;
             playerType = "Player";
-            
+
             //Checks win condition after every move
             gameState.WinCheck(playerType);
             //If game is still not won by player's last move, then AI turn
@@ -48,7 +44,7 @@ public class GameController : MonoBehaviour
                 aiScript.AIMove();
             }
         }
-        
+
     }
 
     // Update is called once per frame
